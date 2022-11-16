@@ -3,7 +3,6 @@
 
 (def tables (atom {})) 
 (def table-schemas (atom {}))
-(def table-column-positions (atom {}))
 
 ;; utility function to check if a query is rightly formatted
 ;; on success: returns true
