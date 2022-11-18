@@ -9,17 +9,19 @@
 ;; on success: returns true
 ;; on failure: returns false
 (defn validate-query [query]
-  (if (and
-    (not= nil (:where query))
-    (= 3 (count (:where query)))
-    (or
-      (= := (nth (:where query) 0))
-      (= :< (nth (:where query) 0))
-      (= :<= (nth (:where query) 0))
-      (= :> (nth (:where query) 0))
-      (= :>= (nth (:where query) 0))))
-    true
-    false))
+  (let [where (:where query)]
+    (if (and
+      (not= nil where)
+      (= 3 (count where))
+      (let [op (nth where 0)]
+        (or
+          (= := op)
+          (= :< op)
+          (= :<= op)
+          (= :> op)
+          (= :>= op))))
+      true
+      false)))
 
 ;; create new table with the given schema 
 ;; on success: returns table name
